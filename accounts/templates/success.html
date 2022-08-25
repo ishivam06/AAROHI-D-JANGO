@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} 
+
+{%block title%}
+<title>Success</title>
+{%endblock%}
+
+
+{%block head%}
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'accounts/css/success.css' %}">
+<script defer src="{% static 'accounts/js/success.js' %}"></script>
+{%endblock%} 
+
+{%block body%}
+    <div class="content">
+        <a href="{% url 'login' %}">
+            <div class="image-container">
+                <img id="success-image" class="success-image" src="" alt="">
+                <div id="caption" class="caption"></div>
+            </div>
+        </a>
+    </div>
+{%endblock%}

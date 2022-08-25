@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat:wght@700&family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* background-image: linear-gradient(to bottom right,#401358,#52057B,#892CDC,#BC6FF1); */
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    to bottom right,
+    #1c0c5b,
+    #3d2c8d,
+    #916bbf,
+    #c996cc
+  );
+  font-family: 'Roboto';
+  scroll-snap-type: y mandatory;
+}
+
+.screen {
+  width: 100%;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+.flash_back_clip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0 0.5em black;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.name {
+  font-family: 'Montserrat';
+  font-size: 7em;
+  animation: text-compress 1000ms ease-in-out;  
+  color: white;
+}
+
+@keyframes text-compress {
+  from {
+    letter-spacing: 1.0ch;
+  }
+
+  to {
+    letter-spacing: normal;
+  }
+}
+
+/*
+Aarohi text pattern 
+ */
+.title {
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+h1 {
+  background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+  background-size: cover;
+  color: transparent;
+  background-clip: text;
+  font-size: 120px;
+  line-height: 0.75;
+  margin: 10px 0;
+}
+/* styling my button */
+
+.white-mode {
+  text-decoration: none;
+  padding: 7px 10px;
+  background-color: #122;
+  border-radius: 3px;
+  color: #fff;
+  transition: 0.35s ease-in-out;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  font-family: "Montserrat";
+}
+
+.white-mode:hover {
+  background-color: #fff;
+  color: #122;
+}
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 6% 29%;
+  stroke-width: 5px;
+  stroke-dashoffset: 0%;
+  animation: stroke-offset 3s infinite linear;
+  border-radius: 10px;
+}
+
+.text-copy:nth-child(1) {
+  stroke: #fff;
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+  stroke: white;
+  animation-delay: 0s;
+}
+
+.text-copy:nth-child(3) {
+  stroke: white;
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(4) {
+  stroke: white;
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(5) {
+  stroke: white;
+  animation-delay: 0s;
+}
+.text-copy:nth-child(6) {
+  stroke: white;
+  animation-delay: -2s;
+}
+.text-copy:nth-child(7) {
+  stroke: white;
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -35%;
+  }
+}
+
+/* 3rd pattern */
+
+/* Aarohi text pattern end */
+
+/* Tagline pattern */
+.tagline {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+}
+
+/* end tagline pattern */
+
+.partition {
+  float: left;
+  width: 50%;
+  position: relative;
+}
+
+.partition #description {
+  padding: 50px;
+  padding-top: 100px;
+  font-size: 20px;
+}
+
+/* dropback */
+.partition .dropback {
+  position: absolute;
+  /* color: #8865b3; */
+  color: #3d2c8d;
+
+  z-index: -1;
+  opacity: 0.5;
+  font-size: 100px;
+  top: 55%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 900;
+}
+
+/* heading dropback */
+#head_dropback {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  display: inline-block;
+}
+
+#left_head_drop {
+  position: absolute;
+  right: 0;
+  top: 15px;
+  z-index: -1;
+  opacity: 0.5;
+  font-size: 15px;
+}
+
+#right_head_drop {
+  position: absolute;
+  left: 0;
+  top: 15px;
+
+  z-index: -1;
+  opacity: 0.5;
+  font-size: 15px;
+}
+
+/* Music quote */
+.Words {
+  /* margin: 0 auto; */
+  padding: 80px 0;
+  left: 0;
+  width: 50%;
+
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  color: white;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-kerning: normal;
+  -webkit-text-size-adjust: 100%;
+  position: relative;
+}
+.Words-line {
+  height: 50px;
+  /* overflow: hidden; */
+  position: relative;
+  display: flex;
+}
+.Words-line p {
+  transform: translate3d(0, 0, 0);
+}
+
+#odd {
+  transform: skew(60deg, -30deg) scaleY(0.6777);
+  padding: 0 70px;
+  /* margin-top: 10px; */
+  /* left: 10%; */
+}
+#even {
+  transform: skew(0deg, -30deg) scaleY(1.333);
+  padding: 0 70px;
+}
+/* end music quote */
+
+/* break line */
+.breakline {
+  font-family: "Noto Music", sans-serif;
+  color: white;
+  display: block;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.events_land {
+  width: 100%;
+  color: white;
+  position: relative;
+}
+
+.events_land #head {
+  font-size: 40px;
+  text-align: center;
+  position: relative;
+}
+
+:root {
+	--gradient-shadow: linear-gradient(
+		45deg,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000
+	);
+}
+
+.rainbow-card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	width: 400px;
+	height: 250px;
+	background: linear-gradient(0deg, #000, #262626);
+  border-radius: 2em;
+}
+.rainbow-card:before,
+.rainbow-card:after {
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	background: var(--gradient-shadow);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+  z-index: -1;
+	animation: animate 20s linear infinite;
+  border-radius: 2em;
+}
+
+.rainbow-card:after {
+	filter: blur(20px);
+}
+
+@keyframes animate {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 300% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.card-list {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow-x: scroll;
+}
+
+.card {
+  margin: 10vh 10vw;
+  min-width: 33vw;
+  background: url('https://cdn.pixabay.com/photo/2017/10/10/07/48/hills-2836301__340.jpg') no-repeat;
+  background-size: cover;
+  border-radius: 2em;
+  text-shadow: 0 0 5px black;
+  overflow: scroll;
+}
+
+.event-title {
+  font-family: 'Montserrat';
+}
+
+
+@media (max-width: 720px) {
+  .name {
+    font-size: 4em;
+  }
+}

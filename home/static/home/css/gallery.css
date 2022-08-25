@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 10vh auto;
+}
+
+.photo {
+  position: relative;
+  padding: 1em;
+  background-color: white;
+  box-shadow: 0 0 5px black;
+  margin: 1em 2.5vw;
+  height: fit-content;
+  width: fit-content;
+  transition-duration: 250ms;
+}
+
+.photo:hover {
+  box-shadow: 0 0 1em white, 0 0 1.5em hsl(305, 100%, 50%), 0 0 3em hsl(225, 100%, 55%) ;
+}
+
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: black;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: hsl(225, 0%, 10%, 0.5);
+  color: white;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 200ms;
+}
+
+.photo:hover .image-overlay {
+  opacity: 1.0;
+}
+
+.photo:active .image-overlay {
+  opacity: 1.0;
+}
+
+.overlay-text {
+  width: 80%;
+  text-align: center;
+  font-family: 'Satisfy';
+}
+
+nav {
+  position: absolute;
+  width: 80%;
+  height: 1em;
+  margin: 1em 10%;
+  padding: 1em;
+  background-color: aqua;
+}
+
+img {
+  object-fit: contain;
+  max-width: 80vw;
+}

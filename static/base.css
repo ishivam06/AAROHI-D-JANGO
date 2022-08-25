@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: #101218;
+    /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: #101218;
+    /* Gecko Browsers */
+}
+
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/* Change Autocomplete styles in Chrome*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+/* The Overlay (background) */
+
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    /* Stay in place */
+    z-index: 100;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    font-family: 'Roboto';
+    background-color: #161821;
+    /* Black fallback color */
+    /* Black w/opacity */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.3s
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+
+/* Position the content inside the overlay */
+
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+/* The navigation links inside the overlay */
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #b3bfd6;
+    display: block;
+    transition: 0.3s;
+}
+
+.slide-left {
+    animation: fadeInLeft 1s linear;
+}
+
+.slide-right {
+    animation: fadeInRight 1s linear;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.overlay a:hover,
+.overlay a:focus {
+    text-shadow: 0 0 5px hsl(219, 30%, 85%);;
+}
+
+
+/* Position the close button (top right corner) */
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+.topnav {
+    position: fixed;
+    top: 1em;
+    width: 80vw;
+    margin: 0 10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-radius: 1em;
+    background-color: hsla(320, 88%, 34%, 0.15);
+    box-shadow: 0 0 5px hsla(320, 95%, 54%, 1.0);
+}
+
+.topnav:hover {
+    box-shadow: 0 0 5px hsla(320, 95%, 54%, 1.0);
+}
+
+.topnav img {
+    max-height: 5vh;
+    padding: 1em;
+}
+
+.topnav button {
+    border: none;
+    outline: none;
+    border-radius: 1em;
+    background-color: transparent;
+    color: white;
+    padding: 0.5em 5ch;
+    transition: background 200ms ease-in-out;
+}
+
+.topnav button:hover {
+    background: wheat;
+    color: black;
+}
+
+.topnav .right-half {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topnav a {
+    display: block;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 5ch;
+    border-radius: 1em;
+    transition-duration: 300ms;
+}
+
+.topnav a:hover {
+    color: black;
+    background-color: greenyellow;
+    text-shadow: 0 0 0.125em white;
+}
+
+.right-half * {
+    margin: 0 0;
+}
+
+@media (max-width: 720px) {
+    .topnav {
+        position: absolute;
+        top: 1em;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .topnav .right-half {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.fa-bars-custom {
+    color: gainsboro;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #161821;
+    border-top: 100px solid #12141b;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    color: rgb(218, 216, 216);
+}
+
+@media only screen and (max-width: 760px) {
+    .footer-body {
+        justify-content: center;
+    }
+}
+
+.footer-bottom {
+    background-color: #101218;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.footer-bottom span {
+    font-size: 16px;
+    word-spacing: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.footer-links,
+.footer-contact {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+}
+
+@media only screen and (max-width: 760px) {
+    .footer-contact {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+    transition-duration: 300ms;
+}
+
+.footer-links a:hover {
+    color: rgb(148, 148, 148);
+}
+
+.footer-links span,
+.footer-contact span {
+    font-size: 24px;
+    color: #b3bfd6;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-contact p {
+    font-size: 18px;
+    color: white;
+}
+
+.footer-social-img {
+    /*height: 100px;*/
+    width: 200px;
+    height: auto;
+    /*To preserve the logo aspect ratio*/
+}
+
+.footer-social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.fa-custom-icon {
+    text-decoration: none;
+    color: #b3bfd6;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 2px;
+    text-decoration: none;
+    transition-duration: 300ms;
+}
+
+.fa-footer {
+    background-color: #101218 !important;
+}
+
+.fa-facebook,
+.fa-linkedin,
+.fa-instagram,
+.fa-twitter {
+    background-color: #101218;
+}
+
+.fa-facebook:hover,
+.fa-linkedin:hover,
+.fa-instagram:hover,
+.fa-twitter:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #101218;
+}
+
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+
+.btn-hover {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 17px;
+    padding-right: 17px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover.color-4 {
+    border: 3px solid #a30a70;
+    background-color: #a30a70;
+    box-shadow: 0 4px 15px 0 #640845;
+}
+
+.btn-hover:hover {
+    border: 3px solid #da4b7e;
+    background-color: #111111;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+
+/*
+
+.preloader {
+	align-items: center;
+	background: rgb(23, 22, 22);
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	transition: opacity 0.3s linear;
+	width: 100%;
+	z-index: 9999;
+}
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+*/
+
+
+/* Preloader */
+
+#preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    /* change if the mask should have another color then white */
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    /* makes sure it stays on top */
+}
+
+#status {
+    display: flex;
+    align-self: center;
+    width: 300px;
+    height: 300px;
+    /* centers the loading animation vertically one the screen */
+    background-image: url(https://media.giphy.com/media/tA4R6biK5nlBVXeR7w/giphy-downsized.gif);
+    /* path to your loading animation */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* is width and height divided by two */
+}
+
+.user-sessions {
+    text-decoration: none;
+    color: #cac5c5;
+    transition-duration: 300ms;
+}
+
+.fa-sign-in,
+.fa-sign-out {
+    font-size: 25px;
+}
+
+.user-sessions:hover {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.footer-heart-icon {
+    font-size: 24px !important;
+    color: red !important;
+    padding: 6px !important;
+    margin-top: 3px !important;
+}
+
+.footer-heart-icon:hover {
+    text-decoration: none;
+}
+
+.btn-nohover {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 17px;
+    padding-right: 17px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-nohover.color-4 {
+    border: 3px solid #a30a70;
+    background-color: #101218;
+    box-shadow: 0 4px 15px 0 #640845;
+}
+
+.btn-nohover:focus {
+    outline: none;
+}

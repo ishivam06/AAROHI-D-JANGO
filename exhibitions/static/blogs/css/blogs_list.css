@@ -1,0 +1,192 @@
+body,html{
+
+    background-color: black;
+}
+
+.blogs-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 40px;
+}
+
+.blog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 300px;
+    height: 745px;
+    background-color: #101218;
+    box-shadow: 3px 3px 20px black;
+    border-radius: 5px 5px 5px 5px;
+    transition-duration: 300ms;
+    margin: 20px;
+}
+
+@media only screen and (max-width: 760px) {
+
+    .blogs-container{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .blog{
+        width: 100%;
+        margin: 10px;
+        
+    }
+}
+
+.blog:hover{
+    box-shadow: 3px 3px 50px black;
+    transform: scale(1.008);
+}
+
+.blog img{
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.blog-content{
+
+    height: 110px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+    
+
+.blog-content p{
+
+    text-overflow: ellipsis;
+    text-align: justify;
+    overflow:hidden;
+    padding: 10px;
+    margin-bottom: 5px;
+    color:  #b3bfd6;
+}
+
+.blog-header{
+    padding: 10px;
+    text-align: center;
+}
+
+.blog-header h3{
+    color: #5a9aa8;
+}
+
+.blog-date{
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 10px;
+}
+
+
+.blog-writer{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.blog-writer img{
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.blog-footer{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.blog-footer div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.blog-footer div span{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.fa-custom-blog{
+    background-color:#101218;
+    color: red;
+    font-size: 20px;
+    outline: none;
+    border: none;
+}
+
+.fa-custom-blog:focus{
+    outline: none;
+}
+
+.controls-button {
+    font-family: "Montserrat";
+    background: linear-gradient(
+      135deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(253, 29, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    );
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    transition-duration: 300ms;
+    color: white;
+    border: none;
+    padding: 1em;
+    margin-left: 0;
+    margin-top: 2em;
+  }
+  
+  .controls-button:hover {
+    background-position: 100% 100%;
+    box-shadow: 0 0 5px hsl(40, 95%, 55%);
+  }
+
+  .title{
+  
+    animation: glow 5000ms infinite ease-in-out;
+    color: white;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin-top: 60px;
+   
+    
+}
+
+@keyframes glow {
+  0% {
+      text-shadow: -0.5em 0 1em white, 0 0 1.5em hsl(305, 100%, 50%), 0 0 3em hsl(225, 100%, 55%)
+  }
+
+  50% {
+      text-shadow: 0.5em 0 1em white, 0 0 1.5em hsl(305, 100%, 50%), 0 0 3em hsl(225, 100%, 55%)
+  }
+
+  100% {
+      text-shadow: -0.5em 0 1em white, 0 0 1.5em hsl(305, 100%, 50%), 0 0 3em hsl(225, 100%, 55%)
+  }
+}

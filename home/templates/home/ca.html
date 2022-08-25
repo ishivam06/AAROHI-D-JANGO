@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+<title>CA</title>
+{%endblock%}
+
+ 
+{%block head%}
+<link rel="stylesheet" href="{% static 'home/css/ca.css' %}"/>
+<script defer src="{% static 'home/js/ca.js' %}"></script>  
+{%endblock%}     
+    
+{%block body%}
+<div class="main">
+  <div class="bg"></div>
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tabs-header">
+        <div name="about" id="tab-title-about" class="active-tab tab-title">ABOUT</div>
+        <div name="faq" id="tab-title-faq" class="tab-title">FAQ</div>
+        <div name="reachout" id="tab-title-reachout" class="tab-title">REACH OUT</div>
+        <div name="register" id="tab-title-register" class="tab-title">REGISTER</div>
+      </div>
+      <div id="tab-content" class="tab-content">
+        <div id="content-about" class="active-content about content">
+          <p>Campus Ambassador is a programme which allows you to collaborate closely with top management of leading events in the region while simultaneously encouraging you to develop your communication, and managerial talents. Campus Ambassadors are representatives of the event to their institutes and are crucial in giving many events the reach they need</p>
+          <p>As a Campus Ambassador you are expected to help Aarohi'22 exngage on multiple platforms at multipe strata within your campus. You are in-charge of Aarohi'22 for your campus. You will get the opportunity to host workshops and events firsthand, hold PORs on behalf of Aarohi'22 and handle all publicity affairs for your campus</p>
+          <p>Campus Ambassador also presents an excellent opportunity as leading Campus Ambassadors get internship opportunities with various partners, free entry to all Aarohi'22 events along with free merch and much much more</p>
+          <p>Check the REGISTER tab to sign up</p>
+        </div>
+        <div id="content-faq" class="faq content">
+          <div class="qna">
+            <div class="q">Q: Who is a Campus Ambassador?</div>
+            <div class="a">He/She is the first point of contact and the publicity head of Aarohi in his/her respective college.</div>
+          </div>
+          <div class="qna">
+            <div class="q">Q: What kind of responsibilities a CA has to fulfill?</div>
+            <div class="a">CA has to share the posts of Aarohi through various social media platforms and posters of various events of Aarohi in his/her college notice board.</div>
+          </div>
+          <div class="qna">
+            <div class="q">Q: Would we have to work outside the college campus or prepare
+              promotional materials?</div>
+            <div class="a">No. Your work is to help us extend our reach only on your college campus. Also,
+              promotional materials will be prepared by us and shared with you through WhatsApp
+              or Facebook groups that you will be a part of.</div>
+          </div>
+          <div class="qna">
+            <div class="q">Q: What to do if i have any other queries?</div>
+            <div class="a">You can drop a mail to <a href="mailto:ca@aarohiworld.org">ca@aarohiworld.org</a></div>
+          </div>
+        </div>
+        <div id="content-reachout" class="reachout content">
+          <div class="contact">
+            <div class="contact-picture">KA</div>
+              <div class="contact-name">Kiran</div>
+              <div class="contact-number">
+                <a href="tel:+916303281475">63032&nbsp;81475</a>
+              </div>
+              <div class="contact-email">
+                <a href="mailto:kiranmaheshavvari2001@gmail.com">kiranmaheshavvari2001@gmail.com</a>
+              </div>
+          </div>
+          <div class="contact">
+            <div class="contact-picture">SS</div>
+              <div class="contact-name">Sanket Sapate</div>
+              <div class="contact-number">
+                <a href="tel:+919673343022">96733&nbsp;43022</a>
+              </div>
+              <div class="contact-email">
+                <a href="mailto:sapatesanket09@gmail.com">sapatesanket09@gmail.com</a>
+              </div>
+          </div>
+        </div>
+        <div id="content-register" class="register content">
+          <p>To register for Campus Ambassador programme</p>
+          <div class="link-container">
+            <a class="link-button" href="https://bit.ly/AAROHI-2022" target="_blank" rel="noopener noreferrer">
+              Click Here
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

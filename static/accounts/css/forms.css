@@ -1,0 +1,100 @@
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(174, 178, 182) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+label{
+    color: black;
+    font-weight: bold;
+}
+
+input[type="text"],input[type="password"],input[type="email"]{
+    display: block;
+    width:500px;
+    border: none;
+    border-bottom: 3px solid #065651;
+    background-color:rgb(174, 178, 182);
+    color:rgba(0,0,0, 0.7);
+}
+
+@media screen and (max-width:450px) {
+
+    input[type="text"],input[type="password"],input[type="email"]{
+        width:250px;
+    }
+}
+
+input[type="text"]:focus,input[type="password"],input[type="email"]:focus{
+    outline: none;
+    background-color: rgb(174, 178, 182);
+}
+
+.forms-pageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.form-container{
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    background-color:rgb(174, 178, 182);
+    padding: 20px;
+    padding-top: 40px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 40px black;
+}
+
+.form-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.form-footer a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.form-check-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.errorlist{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0px 0px 0px 0px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.errorlist li{
+    color: red;
+    opacity: 0.8;
+    list-style: none;
+}
+
+.form-button{
+    
+}

@@ -1,0 +1,131 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.event-card{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 550px;
+    background-color:#101218;
+    box-shadow: 3px 3px 10px black;
+    transition-duration: 300ms;
+    margin: 20px;
+}
+
+
+
+.event-card:hover{
+    box-shadow: 3px 3px 20px black;
+}
+
+.event-card-img img{
+    width: 250px;
+    height: 300px;
+    object-fit: contain;
+    object-position:center;
+}
+
+@media only screen and (max-width: 760px) {
+	.event-card{
+        width: 100%;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .event-card-img img{
+        width: 100%;
+    }
+
+}
+
+.event-card-content{
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.event-card-content h4{
+    color:  #5a9aa8;
+}
+
+span{
+    color: #b3bfd6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+
+.event-card-footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+h2{
+    text-align: center;
+}
+
+p{
+    
+    margin: 0px !important;
+    padding-left: 0px !important;
+}
+
+.event-dates{
+    padding: 0px;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.glimpses p{
+    text-align: left;
+    color: #b3bfd6;
+    line-height: 1.66;
+}
+
+.glimpses ul{
+    margin: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.glimpses ul li{
+    padding-top:10px;
+    color: #b3bfd6;
+    line-height: 1.66;
+}
+
+.glimpses ul li span{
+    color: #5a9aa8;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 760px){
+
+    .glimpses p{
+        padding: 20px;
+        margin: 0px;
+        text-align: justify;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+
+    .glimpses ul{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 20px;
+        text-align: justify;
+        
+    }
+}
+

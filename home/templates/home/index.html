@@ -1,0 +1,492 @@
+{% extends 'base.html' %} {% load static %} {%block title%}
+<title>Aarohi'22</title>
+{%endblock%} {%block head%}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=WindSong:wght@500&display=swap"
+  rel="stylesheet">
+<script defer src="{% static 'home/js/index.js'%}"></script>
+<script defer src="{% static 'home/js/multi-animated-counter.js'%}"></script>
+<script defer src="{% static 'home/js/jquery.visible.js'%}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+  integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script id="vertexShader" type="x-shader/x-vertex">
+  void main() {
+      gl_Position = vec4( position, 1.0 );
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    uniform sampler2D u_noise;
+    uniform sampler2D u_buffer;
+    uniform bool u_renderpass;
+
+    const float blurMultiplier = 0.95;
+    const float circleSize = .25;
+    const float blurStrength = .98;
+    const float threshold = .5;
+    const float scale = 4.;
+
+    #define _fract true
+
+    #define PI 3.141592653589793
+    #define TAU 6.283185307179586
+
+    vec2 hash2(vec2 p)
+    {
+      vec2 o = texture2D( u_noise, (p+0.5)/256.0, -100.0 ).xy;
+      return o;
+    }
+
+    vec3 hsb2rgb( in vec3 c ){
+      vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
+                               6.0)-3.0)-1.0,
+                       0.0,
+                       1.0 );
+      rgb = rgb*rgb*(3.0-2.0*rgb);
+      return c.z * mix( vec3(1.0), rgb, c.y);
+    }
+
+    vec3 domain(vec2 z){
+      return vec3(hsb2rgb(vec3(atan(z.y,z.x)/TAU,1.,1.)));
+    }
+    vec3 colour(vec2 z) {
+        return domain(z);
+    }
+
+
+  #define pow2(x) (x * x)
+
+  const int samples = 8;
+  const float sigma = float(samples) * 0.25;
+
+  float gaussian(vec2 i) {
+      return 1.0 / (2.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (2.0 * pow2(sigma))));
+  }
+
+  vec3 hash33(vec3 p){
+
+      float n = sin(dot(p, vec3(7, 157, 113)));
+      return fract(vec3(2097152, 262144, 32768)*n);
+  }
+
+  vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
+      vec3 col = vec3(0.0);
+      float accum = 0.0;
+      float weight;
+      vec2 offset;
+
+      for (int x = -samples / 2; x < samples / 2; ++x) {
+          for (int y = -samples / 2; y < samples / 2; ++y) {
+              offset = vec2(x, y);
+              weight = gaussian(offset);
+              col += texture2D(sp, uv + scale * offset).rgb * weight;
+              accum += weight;
+          }
+      }
+
+      return col / accum;
+  }
+    void main() {
+      vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+      uv *= scale;
+      vec2 mouse = u_mouse * scale;
+
+      vec2 ps = vec2(1.0) / u_resolution.xy;
+      vec2 sample = gl_FragCoord.xy / u_resolution.xy;
+      vec2 o = mouse*.2+vec2(.65, .5);
+      float d = .98;
+      sample = d * (sample - o);
+      sample += o;
+      sample += vec2(sin((u_time+uv.y * .5)*10.)*.001, -.00);
+
+      vec3 fragcolour;
+      vec4 tex;
+      if(u_renderpass) {
+        tex = vec4(blur(u_buffer, sample, ps*blurStrength) * blurMultiplier, 1.);
+        float df = length(mouse - uv);
+        fragcolour = vec3( smoothstep( circleSize, 0., df ) );
+      } else {
+        tex = texture2D(u_buffer, sample, 2.) * .98;
+        tex = vec4(
+          smoothstep(0.0, threshold - fwidth(tex.x), tex.x),
+          smoothstep(0.2, threshold - fwidth(tex.y) + .2, tex.y),
+          smoothstep(-0.05, threshold - fwidth(tex.z) - .2, tex.z),
+          1.);
+        vec3 n = hash33(vec3(uv, u_time*.1));
+        tex.rgb += n * .2 - .1;
+      }
+
+
+
+      gl_FragColor = vec4(fragcolour,1.0);
+      gl_FragColor += tex;
+
+    }
+</script>
+
+<!--TODO: move this to css-->
+<style>
+  @font-face {
+    font-family: 'RemachineScript';
+    src: url("{% static 'home/fonts/remachine_script.ttf' %}");
+  }
+
+  @font-face {
+    font-family: 'Lobster';
+    src: url("{% static  'home/fonts/Lobster-Regular.ttf'%}");
+  }
+
+  .about {
+    position: relative;
+  }
+
+  #about-bg {
+    filter: blur(5px);
+    opacity: 0.9;
+  }
+
+  #list-box-1 {
+    background-image: url("{% static 'attractions-5.jpg' %}");
+  }
+
+  #list-box-2 {
+    background-image: url("{% static 'attractions-4.jpg' %}");
+  }
+
+  #list-box-3 {
+    background-image: url("{% static 'attractions-6.jpg' %}");
+  }
+
+  .dates {
+    font-family: 'Lobster';
+  }
+
+  .music-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  .music-overlay .music-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: all;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0, 0%, 5%, 0.99);
+  }
+
+  .music-message h1 {
+    font-family: 'Montserrat';
+    font-size: 3em;
+    background: linear-gradient(135deg, violet, purple, orange, red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: unset;
+    text-align: center;
+  }
+
+  .music-message p {
+    color: white;
+  }
+
+  .music-overlay .music-button {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    padding: 1em;
+    background-color: white;
+    pointer-events: all;
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+  let bgmPath = "{% static 'bekaboo.mp3' %}";
+</script>
+
+{%endblock%} {%block body%}
+<div class="main">
+  <div class="bg"></div>
+  <div class="page">
+    <div id="landing" class="screen flash_back_clip">
+      <div id="name" class="name">
+        <div id="typo-container" class="typo-container">
+          <img class="typo" id="typo" src="{% static 'aarohi2022.png' %}" alt="" srcset="">
+        </div>
+      </div>
+      <div class="tagline">
+        <svg viewbox="0 0 100 20">
+          <defs>
+            <linearGradient id="gradient">
+              <stop color="#fff" />
+            </linearGradient>
+            <pattern id="wave" x="0" y="3.7" width="100%" height="100%" patternUnits="userSpaceOnUse">
+              <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z"
+                mask="url(#mask)" fill="#fff">
+                <animateTransform attributeName="transform" begin="0s" dur="1.5s" type="translate" from="0,0" to="40,0"
+                  repeatCount="indefinite" />
+              </path>
+            </pattern>
+          </defs>
+          <text text-anchor="middle" x="50" y="15" font-size="7" fill="white" fill-opacity="0.1">
+            A Universal Symphony
+          </text>
+          <text text-anchor="middle" x="50" y="15" font-size="7" fill="url(#wave)" fill-opacity="1">
+            A Universal Symphony
+          </text>
+        </svg>
+      </div>
+      <div class="dates">
+        <p>4<sup>st</sup> - 5<sup>nd</sup> - 6<sup>rd</sup> - November</p>
+      </div>
+      <div class="breakline">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱 𝄞 𝄟 𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗 𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</div>
+    </div>
+
+    <div class="screen about">
+      <div id="about-bg" class="bg">
+        <img src="{% static 'abt_bg_dj.jpg' %}" alt="" srcset="">
+      </div>
+      <div id="title-about-fest" class="partition ft">
+        <div class="house">
+          <div class="support">
+            <div class="staircase">
+              <div class="stairs">
+
+                <div class="stair">
+                  <span class="panel">JOIN US</span>
+
+                </div>
+                <div class="stair">
+                  <span class="panel">ON THIS</span>
+
+                </div>
+                <div class="stair">
+                  <span class="panel">MELODIOUS</span>
+
+                </div>
+                <div class="stair">
+                  <span class="panel">ESCAPADE</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="descr-fest" class="fd">
+        <div class="description">
+          <p id="description-fest">Aarohi is a Non - Profit Organization completely organized and coordinated by willingness and true spirits of a group of VNITian&rsquo;s.
+            Aarohi, being the Central India&rsquo;s Largest Cultural Festival, is one of the most awaited festivals in India. This year, we will be celebrating the 
+            33<sup>rd</sup> edition of Aarohi  at VNIT, Nagpur.
+            </p>
+        </div>
+      </div>
+      <div id="title-about-theme" class="tt">
+        <!-- <p>A Universal Symphony</p> -->
+      </div>
+      <div id="descr-theme" class="partition td">
+        <div class="description">
+          <p id="description-theme">
+            Where words fail, Music prevails! 
+          </p>
+          <p>In times of joy, sadness, peace, success, failure and all that the heart feels, Music is what resonates with it! So, now it's time to hold your breaths, feel the excitement, experience the foot-tapping and beating hearts as we go on a melodious escapade to create <em>"A UNIVERSAL SYMPHONY"</em> that'll remain in our hearts forever and keep the spirit of Aarohi alive!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="screen events_land">
+      <p class="title" id="head">
+        <span class="notes" id="head_dropback"><span id="left_head_drop">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱
+            𝄞</span></span>
+        Events
+        <span class="notes" id="head_dropback"><span id="right_head_drop">𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗
+            𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</span></span>
+      </p>
+
+      <div class="hide_x_scroll">
+        <div class="horizontal-scroll">
+          
+         
+        
+    
+        
+        {%for event in events%}
+        <a href="https://aarohiworld.org/events/allevents/{{event.pk}}">
+          <div id="more-events" class="event_card" style="
+              background-image: url({{event.image.url}});
+            ">
+            <div class="blur_screen"></div>
+            <div class="event_info" style="text-align: center; width: 100%;">
+              <div class="info" >
+                <p id="head" style="text-align: center;">{{event.title}}</p>
+                <div class="short_event_desc">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        {%endfor%}
+
+        <a href="https://aarohiworld.org/events/allevents">
+          <div id="more-events" class="event_card" style="
+              background-image: url('https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=anthony-delanoix-hzgs56Ze49s-unsplash.jpg');
+              background-size: cover;
+            ">
+            <div class="blur_screen"></div>
+            <div class="event_info" style="text-align: center; width: 100%;">
+              <div class="info">
+                <p id="head" style="text-align: center;">More</p>
+                <div class="short_event_desc">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen attract_land">
+      <p id="head"><span class="notes" id="head_dropback"><span id="left_head_drop">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱
+            𝄞</span></span> Attraction <span class="notes" id="head_dropback"><span id="right_head_drop">𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗
+            𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</span></span></p>
+      <div class="orientation_box">
+        <div class="left_box">
+          <div class="video_box">
+            <!-- Video goes here -->
+            <iframe class="video_frame" src="https://www.youtube.com/embed/UKbH2s-01Lw" title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="right_box">
+          <!-- Vertical list boxes here -->
+          <div class="list_box" id="list-box-1">
+            <div class="blur_screen"></div>
+            <div class="text_container">
+              <p>Stand Ups</p>
+            </div>
+
+          </div>
+          <div class="list_box" id="list-box-2">
+            <div class="blur_screen"></div>
+
+            <div class="text_container">
+              <p>Talk Shows</p>
+            </div>
+          </div>
+          <div class="list_box" id="list-box-3">
+                  <div class=" blur_screen"></div>
+
+          <div class="text_container">
+            <p>Pros Shows</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlights screen">
+    <div class="title"><p>
+      <span class="notes" id="head_dropback"><span id="left_head_drop">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱
+        𝄞</span></span>
+    Highlights
+    <span class="notes" id="head_dropback"><span id="right_head_drop">𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗
+        𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</span></span>
+    </p></div>
+    <a href="/home/aarohi-over-the-years">
+      <div class="gallery">
+        <div>EXPERIENCE THE JOURNEY OF AAROHI</div>
+      </div>
+    </a>
+
+    <a href="/home/previous_sponsors">
+      <div class="sponsors">
+        <div>MEET OUR SPONSORS</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="connect screen">
+    <div class="title">
+      <p>
+        <span class="notes" id="head_dropback"><span id="left_head_drop">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱
+          𝄞</span></span>
+          Statistics
+      <span class="notes" id="head_dropback"><span id="right_head_drop">𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗
+          𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</span></span>
+      </p>
+      </div>
+    <div class="connect-links">
+      <a href="#" id="facebook" class="tile">
+        <b>2k + USERS</b>
+      </a>
+      <a href="#" id="instagram" class="tile">
+          <b>19k + VIEWS</b> 
+      </a>
+      <a href="#" id="discord" class="tile">
+        <b>10 + EVENTS</b>
+      </a>
+    </div>
+  </div>
+
+  <div class="connect screen">
+    <div class="title">
+      <p>
+        <span class="notes" id="head_dropback"><span id="left_head_drop">𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗 𝅗𝅘𝅥 𝅘𝅥𝅯 𝅘𝅥𝅱
+          𝄞</span></span>
+          Connect With Us
+      <span class="notes" id="head_dropback"><span id="right_head_drop">𝄞 𝅘𝅥𝅱 𝅘𝅥𝅯 𝅘𝅥𝅗
+          𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗𝅗</span></span>
+      </p>
+      </div>
+    <div class="connect-links">
+      <a href="https://www.facebook.com/AarohiWorld/" id="facebook" class="tile">
+        <i class="fa-brands fa-facebook"></i> Facebook
+      </a>
+      <a href="https://www.instagram.com/aarohi_vnitnagpur/?hl=en" id="instagram" class="tile">
+        <i class="fa-brands fa-instagram"></i> Instagram
+      </a>
+      <a href="https://www.youtube.com/channel/UCcBmZqk4hUSbSiyQzGU20pg" id="youtube" class="tile">
+        <i class="fa-brands fa-youtube"></i> YouTube
+      </a>
+      <a href="/home/coming_soon" id="discord" class="tile">
+        <i class="fa-brands fa-discord"></i> Discord
+      </a>
+    </div>
+  </div>
+</div>
+<div class="music-overlay" id="music-overlay">
+  <div class="music-message" id="music-message">
+    <h1>The Symphony Begins Here</h1>
+    <p>( Click Here )</p>
+  </div>
+  <i class="music-button fa-solid fa-music" id="music-button"></i>
+</div>
+</div>
+
+
+
+{%endblock%}

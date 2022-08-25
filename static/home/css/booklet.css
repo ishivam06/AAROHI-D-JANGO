@@ -1,0 +1,34 @@
+.carousel-item img{
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  width: 90%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.booklet-container{
+  padding: 40px;
+}
+
+@media only screen and (max-width:760px){
+  .booklet-container{
+    padding: 10px;
+  }
+}
+
+.carousel-control-next span, .carousel-control-prev span{
+
+  font-size: 30px !important;
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.carousel-inner{
+  background-color:#101218 ;
+  padding: 10px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 3px 3px 20px black;
+}

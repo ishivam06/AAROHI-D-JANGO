@@ -1,0 +1,44 @@
+
+{  "entity": "event",  
+    "account_id": "acc_BFQ7uQEaa7j2z7",  
+    "event": "payment.authorized",  
+    "contains": [    "payment"  ],  
+    "payload": {    
+        "payment": {     
+             "entity": {        
+                 "id": "pay_DESyzxuld02Zul",       
+                  "entity": "payment",     
+                     "amount": 100,        
+                     "currency": "INR",      
+                       "status": "authorized",       
+                        "order_id": "order_DESxiijbl9xjDB",       
+                         "invoice_id": null,        
+                         "international": false,        
+                         "method": "upi",        
+                         "amount_refunded": 0,        
+                         "refund_status": null,        
+                         "captured": false,        
+                         "description": null,       
+                          "card_id": null,        
+                          "bank": null,        
+                          "wallet":null,        
+                          "vpa": "gaurav.kumar@upi",        
+                          "email": "gaurav.kumar@example.com",        
+                          "contact": "+919876543210",       
+                           "notes": {"email": "kunal", 
+                            "phone": "1", 
+                            "event": "swarmanzar", 
+                            "aarohi_id": "AAR2022_0001"},        
+                            "fee": null,        
+                            "tax": null,        
+                            "error_code": null,        
+                            "error_description": null,        
+                            "error_source": null,        
+                            "error_step": null,       
+                             "error_reason": null,        
+                             "acquirer_data": {          
+                                 "rrn": "0125836177"        
+                                 },        
+                                 "created_at": 1567675356      
+                                 }    }  },  
+                                "created_at": 1567675356}

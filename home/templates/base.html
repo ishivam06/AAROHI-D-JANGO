@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    {%block title%}
+
+    {%endblock%}
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img_aarohi_color.png' %}" type="image/x-icon">
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P78RLZVKQM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-P78RLZVKQM');
+    </script>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <!--
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--Animate css CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--custom styles and scripts-->
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    
+    {%if user.is_authenticated%}
+    <script type="text/javascript"> 
+        let username = "{{user.first_name}}";
+        console.log(username)
+        </script>
+    {%endif%}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="{% static 'base.js'%}"></script>
+    <script defer src="{% static 'preloader.js'%}"></script>
+
+    {% block head %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!--loader-->
+
+
+    <div id="preloader">
+        <div class="text">LOADING</div>
+        <div class="click-indicator" id="click-indicator"></div>
+    </div>
+
+    <div class="orientation-message" id="orientation-message"></div>
+
+    <i id="sound-icon" class="fa-solid fa-music"></i>
+
+    <div class="topnav" id="navbar">
+        
+            <a id="home-link" class="navlink" href="/home">Home</a>
+            <a id="home-link" class="navlink" href="https://3d-world.aarohiworld.org/" target="_blank">Aarohi World</a>
+
+            {%if user.is_authenticated%}
+            <span><a id="dashboard-link" class="user-sessions" href="{%url 'profile' %}">Dashboard</a></span>
+            {%endif%}
+        
+            {%if user.is_authenticated%}
+            <b><span style="color: white;">{{user.first_name}}</span></b>
+            <span><a id="signout-link" class="navlink user-sessions" href="{%url 'logout' %}">Sign Out</a></span>
+            {%else%}
+            <span><a id="signin-link" class="navlink user-sessions" href="{%url 'login' %}">Sign In</a></span>
+            {%endif%}
+            <button type="reset" id="navopen-button">
+                <span id="nav-open-button" href="#"><i class="fa-solid fa-album"></i></span> 
+            </button>
+        
+    </div>
+
+    <div id="myNav" class="overlay">
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Overlay content -->
+        <div class="overlay-content">
+
+            <div><a class="nav-overlay-link-left" href="/events/allevents">Events</a></div>
+            <div><a class="nav-overlay-link-left" href="/home/ca">Campus Ambassador</a></div>
+            <div><a class="nav-overlay-link-right" href="/home/previous_sponsors">Sponsors</a></div>
+            <div><a class="nav-overlay-link-left" href="/home/gallery">Gallery</a></div>
+            <div><a class="nav-overlay-link-left" href="/home/team">Team</a></div>
+
+        </div>
+    </div>
+
+
+    {% block body %}
+
+    {% endblock %}
+
+
+    <div class="footer">
+        <div class="logo">
+            <a href="/home">
+                <img src="{% static 'aarohi_logo.png' %}" alt="" srcset="">
+            </a>
+        </div>
+        <div class="sitemap">
+            <div class="sitemap-links">
+                <a href="/home">Home</a>
+                <a href="/accounts/login">Log In</a>
+                <a href="/accounts/register">Sign up</a>
+                <a href="/home/gallery">Gallery</a>
+                <a href="/home/previous_sponsors">Sponsors</a>
+            </div>
+        </div>
+        <div class="contact-us">
+            <a class="socmed-link link" id="link-facebook" href="https://www.facebook.com/AarohiWorld/"><i class="fa-brands fa-facebook"></i></a>
+            <a class="socmed-link link" id="link-instagram" href="https://www.instagram.com/aarohi_vnitnagpur/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+            <a class="socmed-link link" id="link-discord" href="/home/coming_soon"><i class="fa-brands fa-discord"></i></a>
+            <a class="socmed-link link" id="link-youtube" href="https://www.youtube.com/channel/UCcBmZqk4hUSbSiyQzGU20pg"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+
+</body>
+
+</html>

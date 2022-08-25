@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat:wght@700&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
+    width: 100%;
+    height: 100vh;
+    background-color: hsl(0, 0%, 5%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal {
+    background-color: hsla(0, 0%, 5%, 1.0);
+    padding: 5vh 5vw;
+    border-radius: 2em;
+    box-shadow: -2px -2px 4px hsl(0, 0%, 8%), 2px 2px 4px hsl(0, 0%, 1%);
+    width: 80vw;
+}
+
+.login-modal-header {
+    margin: auto 10vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+}
+
+.login-modal-header h2 {
+    font-family: 'Montserrat';
+}
+
+.login-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-modal-content .icon-interactive {
+    background-color: black;
+    color: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 0 1ch;
+    transition-duration: 300ms;
+}
+
+.login-modal-container .icon-interactive:hover {
+    background-color: red;
+}
+
+.login-modal-container .icon-interactive:focus {
+    background-color: red;
+}
+
+.login-modal-container .icon-interactive:active {
+    background-color: red;
+}
+
+.input-group {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 9fr 1fr;
+}
+
+.input-group .controls {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 1ch;
+}
+
+input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: hsl(0, 0%, 10%);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    color: white;
+    transition-duration: 200ms;
+}
+
+input[type="text"]:hover {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+input[type="text"]:active {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+input[type="password"] {
+    border: none;
+    outline: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: hsl(0, 0%, 10%);
+    color: white;
+}
+
+input[type="password"]:hover {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+input[type="password"]:focus {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+input[type="password"]:active {
+    box-shadow: 0 0 5px hsl(0, 0%, 30%);
+}
+
+.icon {
+    padding: 1em;
+    border-radius: 0.5em;
+    color: black;
+    background-color: aqua;
+}
+
+form {
+    font-family: 'Roboto';
+}
+
+.signin-button {
+    background-color: hsl(330, 100%, 71%);
+    width: fit-content;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    padding: 1em;
+}
+
+.register-prompt {
+    background-color: black;
+    border-radius: 0.5em;
+    padding: 1em;
+    width: 100%;
+}
+
+.login-modal-footer {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+}
+
+@media (max-width: 720px) {
+    .input-group {
+        grid-template-columns: 1fr;
+        row-gap: 1em;
+        margin-bottom: 5vh;
+    }
+
+    .input-group .controls {
+        margin-left: 0;
+    }
+
+    .login-modal-content i {
+        margin-left: 0;
+    }
+
+    .login-modal {
+        width: 80vw;
+    }
+}

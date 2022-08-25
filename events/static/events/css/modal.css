@@ -1,0 +1,13 @@
+.modal-dialog, .modal-content{
+    background-color: #3b435a !important;
+}
+
+.modal-body{
+    text-align: center;
+
+}
+
+.close span{
+    font-size: 30px;
+    color: white;
+}

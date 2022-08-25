@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} {%block head%}
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="{% static 'accounts/css/error.css' %}" />
+
+{%endblock%} {%block body%}
+
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <!-- <h1>404</h1> -->
+            <!--pass code as arg here-->
+            <h2>Error-{{errorcode}}</h2>
+            <!--error message here-->
+            <p>{{message}}</p>
+            <a href="/home" style="display: block">Homepage</a>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

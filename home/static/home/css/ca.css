@@ -1,0 +1,186 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+    background-color: hsla(0, 0%, 15%, 1.0);
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-layout {
+    width: 80vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs-header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tab-title {
+    padding: 1em;
+    margin: 0 5ch;
+    width: 30ch;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+.active-tab {
+    animation: background-fade 1000ms ease-in-out;
+    background: linear-gradient(135deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background-size: 200% 200%;
+    background-position: 100% 100%;
+    color: white;
+}
+
+.tab-content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    color: white;
+}
+
+.content {
+    display: none;
+    margin: 1em 0;
+}
+
+.active-content {
+    display: block;
+}
+
+.contact {
+    display: grid;
+    grid-template-areas: 
+        'photo photo name name name'
+        'photo photo phno mail misc';
+    margin: 1em 5ch;
+    padding: 1em;
+    transition-duration: 250ms;
+    border-radius: 1em;
+}
+
+.contact:hover {
+    box-shadow: -0.25em -0.25em 0.75em hsla(0, 0%, 25%, 1.0), 0.25em 0.25em 0.75em hsla(0, 0%, 5%, 1.0);
+}
+
+.contact-photo {
+    grid-area: photo;
+}
+
+.contact-name {
+    grid-area: name;
+}
+
+.contact-number {
+    grid-area: phno;
+}
+
+.contact-email {
+    grid-area: mail;
+    width: 50ch;
+}
+
+@keyframes background-fade {
+    from {
+        background-position: 0% 0%;
+        color: white;
+    }
+
+    to {
+        background-position: 100% 100%;
+        color: white;
+    }
+}
+
+.qna {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+.q {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: hsl(200, 100%, 50%);
+}
+
+.register .form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register iframe {
+    overflow-y: hidden;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-button {
+    font-family: 'Montserrat';
+    background-image: linear-gradient(135deg, #1CD8D2 0%, #33ffaa  51%, #5eff00  100%);
+    background-size: 200% 200%;
+    transition-duration: 150ms;
+    padding: 1em;
+    color: black;
+    margin: 0 auto;
+}
+
+.link-button:hover,
+.link-button:active {
+    background-position: 100% 100%;
+    color: black;
+}
+
+@media (max-width: 720px) {
+    .tabs-header {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+    }
+
+    .tab-title {
+        min-width: none;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .contact {
+        grid-template-areas: 
+            'photo photo'
+            'photo photo'
+            'name name'
+            'phno phno'
+            'mail mail'
+            'misc misc';
+    }
+}

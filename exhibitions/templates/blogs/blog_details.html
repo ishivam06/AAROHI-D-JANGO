@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+<!--put blog title here-->
+<title>{{blog.heading}}</title>
+{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{% static 'blogs/css/blog_details.css' %}"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+
+    // GET AJAX request
+    let isliked = localStorage.getItem("isliked_{{blog.pk|escapejs}}");
+
+    if(isliked === null){
+
+        isliked = false
+    }
+
+    function likeBlog()
+    {   
+
+        if(!isliked)
+        {
+            $.ajax({
+                    type: 'GET',
+                    url: "/exhibitions/exhibition/like/{{blog.pk|escapejs}}",
+                    success: function (response) {
+                        document.getElementById('likes').innerHTML = response.likes;
+                        console.log("thanks for liking");
+                        isliked = true
+                        localStorage.setItem("isliked_{{blog.pk|escapejs}}", true)
+
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                })
+        }
+
+    }
+    
+
+    function shareBlog()
+    {   
+        const title = document.title;
+        const url = document.querySelector('link[rel=canonical]') ? document.querySelector('link[rel=canonical]').href : document.location.href;
+        navigator.share({
+        title: title,
+        url: url
+        });
+    }
+</script>
+
+{%endblock%}     
+    
+{%block body%}
+<div class="blog-image">
+    <img src="{{blog.image.url}}">
+    
+</div>
+<div class="blog-header">
+    <!--title-->
+    <h1 style="color: white;">{{ blog.heading}}</h1>
+    <!--author-->
+    <div class="blog-details-writer">
+        <span style="color:  #b3bfd6; font-weight: 700;" > - By {{ blog.artist.user.first_name}} {{ blog.artist.user.last_name}}</span>
+        <div class="blog-socials">
+            <a href="mailto:{{blog.artist.user.email}}" class="fa fa-envelope fa-social-custom"></a>
+
+            {% if blog.artist.linked_in %}
+            <a href="{{blog.artist.linked_in}}" class="fa fa-linkedin fa-social-custom"></a>
+            {%endif%}
+
+            {% if blog.artist.fb %}
+            <a  href="{{blog.artist.fb}}"class="fa fa-instagram fa-social-custom"></a>
+            {%endif%}
+
+
+            {% if blog.artist.insta %}
+            <a  href="{{blog.artist.insta}}"class="fa fa-instagram fa-social-custom"></a>
+            {%endif%}
+
+
+            {% if blog.artist.portfolio %}
+            <a href="{{blog.artist.portfolio}}" class="fa fa-globe fa-social-custom"></a>
+            {%endif%}
+            
+        </div>
+    </div>
+</div>
+<div class="blog-content-container">
+    
+    <div class="blog-content">
+        
+        <span class="blog-detail-date" style="color: white;">Published : {{ blog.date}}</span>
+<pre>
+ {{blog.content }}
+</pre>
+        <div class="blog-footer">
+            <button onclick="likeBlog();" class="fa fa-thumbs-up fa-custom-blog" 
+            style="color:#5a9aa8; border: 3px solid #5a9aa8; border-radius: 50%; height: 40px; width: 40px;" ></button>
+            <div>
+                <button id="likeButton" class="fa fa-heart fa-custom-blog" ></button>
+                <span id="likes" style="color: white;">{{blog.likes}}</span>
+            </div>
+            <div id="shareButton">
+                <button onclick="shareBlog();"  class="fa fa-share fa-custom-blog" style="color:#5a9aa8 ;"></button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+</div>
+
+{%endblock%}

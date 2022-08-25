@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %}
+
+{%block title%}
+<title>Gallery</title>
+{%endblock%}
+
+
+{%block head%}
+<link rel="stylesheet" href="{% static 'home/css/gallery.css' %}" />
+{%endblock%}
+
+{%block body%}
+
+  <h2 style="text-align: center; padding: 10px;">Social Initiatives</h2>
+<div class="container">
+
+<div class="row">
+    <div class="column">
+      <img src="{% static 'home/images/gallery/img_soc_ini_1.jpeg' %}">
+
+
+    </div>
+    <div class="column">
+      <img src="{% static 'home/images/gallery/img_soc_ini_2.jpeg' %}">
+
+
+    </div>
+    <div class="column">
+      <img src="{% static 'home/images/gallery/img_soc_ini_3.jpeg' %}">
+
+
+    </div>
+    <div class="column">
+      <img src="{% static 'home/images/gallery/img_soc_ini_4.jpeg' %}">
+
+    </div>
+  </div>
+  </div>
+{%endblock%}

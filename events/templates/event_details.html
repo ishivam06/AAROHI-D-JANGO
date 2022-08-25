@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+<title>Events</title>
+{%endblock%}
+ 
+{%block head%}
+
+<link rel="stylesheet" href="{% static 'events/css/event_details.css' %}"/>  
+<link rel="stylesheet" href="{% static 'home/css/ca.css' %}"/>
+<script defer src="{% static 'home/js/ca.js' %}"></script>  
+
+{%endblock%}     
+    
+
+{%block body%}
+
+ 
+<div class="container-details">
+    <div class="event-details-container">
+        <div class="event-img">
+            <!--Image goes here-->
+            <img class src="{{event.image.url}}">
+        </div>
+        <div class="event-details-content">
+            <div class="event-details-header">
+            <!--title-->
+                <h2>{{event.title}}</h2>
+            </div>
+            <div class="event-details">
+                <!--Other details-->
+                <div>
+                    <p class="tag">Event Date: <span>{{event.date}}</span></p>
+                    <p class="tag">Register Before: <span>{{event.last_registration_date}}</span></p>
+                    <p class="tag">Timing: <span>{{event.start_time}} - {{event.end_time}} </span>
+                </div>
+                <div>
+                    <p class="tag">Fees: <span>Rs. {{event.fees}}</span></p>
+                    <p class="tag">Platform: <span>{{event.platform}}</span></p>
+                </div>
+            </div>
+            <!--Register link-->
+            <div class="event-details-footer">
+               
+                <a target="_blank" href="{{event.document.url}}"><button class="controls-button">Event Details</button></a>
+            </div>
+           
+        </div>
+    </div>
+
+
+</div>
+
+<div class="main">
+<div class="container-tab-layout">
+    <div class="tab-layout">
+      <div class="tabs-header">
+        <div name="about" id="tab-title-about" class="active-tab tab-title">ABOUT</div>
+        <div name="faq" id="tab-title-faq" class="tab-title">STRUCTURE</div>
+        <div name="reachout" id="tab-title-reachout" class="tab-title">REACH OUT</div>
+        <div name="register" id="tab-title-register" class="tab-title">REGISTER</div>
+      </div>
+      <div id="tab-content" class="tab-content">
+        <div id="content-about" class="active-content about content">
+            <p style="white-space: pre-line; text-align: justify;">{{event.description}}</p>
+        </div>
+        <div id="content-faq" class="faq content">
+          <p style="white-space: pre-line; text-align: justify;">{{event.structure}}</p>
+        </div>
+        <div id="content-reachout" class="reachout content">
+          <!--improve this layout-->
+          {% for manager in event.managers.all %}
+            <div class="contact">
+              <!--No icon rakhna better hai IMO, odd lagta hai sab EMs ke liye generic sa icon-->
+              <div class="contact-picture"></div>
+                <div class="contact-name">{{manager.user.first_name}} {{manager.user.last_name}}</div>
+                <div class="contact-number">
+                  <a href="tel:{{manager.contact}}">{{manager.contact}}</a>
+                </div>
+                <div class="contact-email">
+                  <a href="mailto:{{manager.user.email}}">{{manager.user.email}}</a>
+                </div>
+            </div>
+          {% endfor %}
+          
+        </div>
+        <div id="content-register" class="register content">
+          <p style="text-align: center; margin-bottom: 8px; font-weight: bold;">Select Category</p>
+          <div class="link-container">
+
+            {% if mode == 1 %}
+
+              {% if registered %}
+                <button class="controls-button">Registered</button>
+              {% elif today_date > event.last_registration_date %}
+                <button class="controls-button">Closed</button>
+              {% else %}
+
+                {%if event.title == "Art Conoscenza"%}
+
+                  {%if event.reg_link_solo %}
+                  <a class="link-button" href="{{event.reg_link_solo}}" target="_blank" rel="noopener noreferrer">
+                    Doodle Foodle
+                  </a>
+                  {%endif%}
+                  {%if event.reg_link_duo %}
+                  <a class="link-button" href="{{event.reg_link_duo}}" target="_blank" rel="noopener noreferrer">
+                    Creative cube
+                  </a>
+                  {%endif%}
+                  {%if event.reg_link_group %}
+                  <a class="link-button" href="{{event.reg_link_group}}" target="_blank" rel="noopener noreferrer">
+                    Digi-Art
+                  </a>
+                  {%endif%}
+
+                  <a class="link-button" href="https://forms.gle/WyBqkdRksYA5JWec6" target="_blank" rel="noopener noreferrer">
+                    Art Gallery
+                  </a>
+
+                {%else%}
+
+
+
+                  {%if event.reg_link_solo %}
+                  <a class="link-button" href="{{event.reg_link_solo}}" target="_blank" rel="noopener noreferrer">
+                      Solo
+                  </a>
+                  {%endif%}
+                  {%if event.reg_link_duo %}
+                  <a class="link-button" href="{{event.reg_link_duo}}" target="_blank" rel="noopener noreferrer">
+                      Duet
+                  </a>
+                  {%endif%}
+                  {%if event.reg_link_group %}
+                  <a class="link-button" href="{{event.reg_link_group}}" target="_blank" rel="noopener noreferrer">
+                      Group
+                  </a>
+                  {%endif%}
+                
+                {%endif%}
+                
+              {% endif %}
+            {% else %}
+              <a href='/accounts/login/'><button class="controls-button">Login to Register</button></a>
+            {% endif %}
+
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--
+<ul class="nav nav-tabs nav-tabs-container">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1">Rules</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu3">Structure</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">Contact</a>
+    </li>
+</ul>
+
+Tab panes 
+  <div class="tab-content">
+
+    <div class="tab-pane container active" id="home">
+        <pre class="tag">{{event.description}}</pre>
+    </div>
+     
+    <div class="tab-pane container fade" id="menu1">
+        <pre class="tag">{{event.rules}}</pre>
+    </div>
+    <div class="tab-pane container fade" id="menu3">
+
+        <pre class="tag">{{event.structure}}</pre>
+    </div>
+    <div class="tab-pane container fade" id="menu2">
+       
+        <div class="event-contacts">
+            {% for manager in event.managers.all %}
+            <div>
+                <p class="tag"><i class="fa fa-user"></i><span>{{ manager.user.first_name }} {{ manager.user.last_name }}</span></p>
+                <p class="tag"><i class="fa fa-phone"></i><span>{{manager.contact}}</span></p>
+                <p class="tag"><i class="fa fa-google"></i><span>{{manager.user.email}}</span></p>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+  </div>
+
+-->
+{%endblock%}

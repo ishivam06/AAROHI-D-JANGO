@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+<title>testimonials</title>
+{%endblock%}
+
+ 
+{%block head%}
+<!--add css link here-->
+<!--
+<link rel="stylesheet" href="{% static 'home/css/coming_soon.css' %}"/>
+-->
+{%endblock%}     
+    
+
+{%block body%}  
+    
+{%for t in testimonials%}
+
+    <img src="{{t.photo.url}}"/>
+    <p>{{t.batch}}</p>
+    <p>{{t.name}}</p>
+    <p>{{t.content}}</p>
+
+{%endfor%}
+
+
+{%endblock%}

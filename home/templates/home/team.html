@@ -1,0 +1,192 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{%block title%}
+<title>Team</title>
+{%endblock%}
+
+
+{%block head%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<link rel="stylesheet" href="{% static 'home/css/team.css' %}" /> 
+{%endblock%} 
+
+{%block body%}
+<section class="section-team">
+    <div class="container">
+        <!-- Start Header Section -->
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header-section">
+                    <h2 class="title">Core Team</h2>
+                </div>
+            </div>
+        </div>
+        <!-- / End Header Section -->
+        <div class="row">
+
+            {%for core in cores%}
+            <!-- Start Single Person -->
+            <div class="col-sm-6 col-lg-4 col-xl-4">
+                <div class="single-person">
+                    <div class="person-image">
+                        <img src="{{core.photo.url}}" alt="">
+                        
+                    </div>
+                    <div class="socials">
+                        <span class="icon">
+                            <a href="{{core.insta}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </span>
+                        <span class="icon">
+                            <a href="mailto:{{core.user.email}}" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </span>
+                        <span class="icon">
+                            <a href="{{core.linked_in}}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </span>
+                    </div>
+                    <div class="person-info">
+                        <h3 class="full-name">{{core.user.first_name}} {{core.user.last_name}}</h3> 
+                        <span class="speciality"><p>{{core.designation}}</p></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / End Single Person -->
+            {%endfor%}
+    
+         
+        </div>
+    </div>
+</section>
+
+
+<!-- Web team-->
+
+
+<section class="section-team">
+    <div class="container">
+        <!-- Start Header Section -->
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header-section">
+                    
+                    <h2 class="title">Web Team</h2>
+                </div>
+            </div>
+        </div>
+        <!-- / End Header Section -->
+        <div class="row">
+
+            {%for developer in developers%}
+            <!-- Start Single Person -->
+            <div class="col-sm-6 col-lg-4 col-xl-4">
+                <div class="single-person">
+                    <div class="person-image">
+                        <img src="{{developer.photo.url}}" alt="">
+                        
+                    </div>
+                    <div class="socials">
+                        <span class="icon">
+                            <a href="{{developer.github}}" target="_blank"><i class="fab fa-github"></i></a>
+                        </span>
+                        <span class="icon">
+                            <a href="mailto:{{developer.user.email}}" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </span>
+                        <span class="icon">
+                            <a href="{{developer.linked_in}}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </span>
+                    </div>
+                    <div class="person-info">
+                        <h3 class="full-name">{{developer.user.first_name}} {{developer.user.last_name}}</h3> 
+                        <span class="speciality"><p>{{developer.fb}}</p></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / End Single Person -->
+            {%endfor%}
+          
+        </div>
+    </div>
+</section>
+
+
+<!-- Web team-->
+
+
+<section class="section-team">
+    <div class="container">
+        <!-- Start Header Section -->
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header-section">
+                    
+                    <h2 class="title">Professor Incharges</h2>
+                </div>
+            </div>
+        </div>
+        <!-- / End Header Section -->
+        <div class="row">
+
+
+            
+       
+
+            
+            <!-- Start Single Person -->
+            <div class="col-sm-6 col-lg-4 col-xl-4">
+                <div class="single-person">
+                    <div class="person-image">
+                        <img src="https://aarohi-website-bucket.s3.ap-south-1.amazonaws.com/media/profs/WhatsApp+Image+2022-02-25+at+1.03.41+PM.jpeg" alt="">
+                        
+                    </div>
+                    
+                    <div class="person-info">
+                        <h3 class="full-name">Dr. Ajay Kumar Agrawal</h3> 
+                        <span class="speciality"><p>Professor Incharge</p></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / End Single Person -->
+
+             <!-- Start Single Person -->
+             <div class="col-sm-6 col-lg-4 col-xl-4">
+                <div class="single-person">
+                    <div class="person-image">
+                        <img src="https://aarohi-website-bucket.s3.ap-south-1.amazonaws.com/media/profs/WhatsApp+Image+2022-02-25+at+1.03.42+PM.jpeg" alt="">
+                        
+                    </div>
+                    
+                    <div class="person-info">
+                        <h3 class="full-name">Dr. Ashish Premkumar Khatri</h3> 
+                        <span class="speciality"><p>Professor Incharge</p></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / End Single Person -->
+
+             <!-- Start Single Person -->
+             <div class="col-sm-6 col-lg-4 col-xl-4">
+                <div class="single-person">
+                    <div class="person-image">
+                        <img src="https://aarohi-website-bucket.s3.ap-south-1.amazonaws.com/media/profs/WhatsApp+Image+2022-02-25+at+1.03.43+PM.jpeg" alt="">
+                        
+                    </div>
+                    
+                    <div class="person-info">
+                        <h3 class="full-name">Dr. Arghya Mitra</h3> 
+                        <span class="speciality"><p>Advisory</p></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / End Single Person -->
+    
+          
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{%endblock%}

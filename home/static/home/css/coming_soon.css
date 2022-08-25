@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Playfair Display';
+}
+
+.bg {
+    background-color: hsla(0, 0%, 10%, 1.0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    color: hsla(0, 0%, 90%, 1.0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote {
+    width: 80vw;
+}
+
+.quote-text {
+    font-size: 2em;
+    font-family: 'Playfair Display';
+}
+
+.quote-author {
+    text-align: end;
+    font-family: 'Dancing Script';
+}
+
+.titles {
+    margin: 10vh 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    background-image: linear-gradient(135deg, violet, purple, orange, red);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: bg-move ease-in-out 4s infinite;
+    font-size: 3em;
+}
+
+@keyframes bg-move {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.links {
+    margin: 5vh 0;
+    display: flex;
+}
+
+#home-link {
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 0 0.5em white;
+    text-decoration: underline;
+}
+
+#home-link:hover,
+#home-link:active {
+    text-shadow: 0 0 1em white, 0 0 1.5em hsl(305, 100%, 50%), 0 0 2em hsl(225, 100%, 55%);
+}
+
+a {
+    margin: 0.5em 5ch;
+    color: hsla(0, 0%, 90%, 1.0);
+    text-decoration: none;
+    transition-duration: 150ms;
+}
+
+a:hover,
+a:active {
+    color: white;
+    text-shadow: 0 0 0.5em white, 0 0 0.75em hsl(305, 100%, 50%), 0 0 1.5em hsl(225, 100%, 55%);
+}
+
+@media (max-width: 720px) {
+    .links {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.instruments {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
+
+.instrument {
+    position: fixed;
+    padding: 0.5em;
+    background-color: hsla(0, 0%, 20%, 1.0);
+    border-radius: 2em;
+    top: 0;
+    left: 0;
+    color: white;
+    opacity: 0.3;
+}
+
+.instrument:hover {
+    background-color: hsl(225, 100%, 55%);
+    opacity: 0.5;
+}
+
+.playing {
+    background-color: hsl(225, 100%, 70%);
+    opacity: 1.0;
+}

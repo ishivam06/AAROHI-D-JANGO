@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% load static %} {%block title%}
+<title>Dashboard</title>
+{%endblock%} {%block head%}
+<link rel="stylesheet" href="{% static 'accounts/css/dashboard.css' %}" />
+{%endblock%} {%block body%}
+
+<div class="page-container">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h2>Dashboard</h2>
+    </div>
+    <div class="dashboard-body">
+      <div class="dashboard-profile-card">
+        <h3 style="text-align: center">Profile</h3>
+
+        <!--User credentials-->
+        <div class="profile-card-body">
+          <div class="user-info">
+            <h6>Aarohi ID:</h6>
+            <span>{{ user.username }}</span>
+          </div>
+          <div class="user-info">
+            <h6>Name:</h6>
+            <span>{{ user.first_name }} {{user.last_name}}</span>
+          </div>
+          {% if participant_info %}
+          <div class="user-info">
+            <h6>College:</h6>
+            <span>{{ participant_info.college }}</span>
+          </div>
+          <div class="user-info">
+            <h6>Contact:</h6>
+            <span>{{ participant_info.contact }}</span>
+          </div>
+          {% endif %}
+        </div>
+        <a style="text-align: center" href="{%url 'change_password'%}">
+          <button class="btn-hover color-4">Change password</button>
+        </a>
+        {%if user.is_staff%}
+        <a style="text-align: center" href="/notanadmin">
+          <button class="btn-hover color-4">Admin</button>
+        </a>
+        {%endif%}
+      </div>
+
+      <div class="dashboard-events">
+        <h3 style="text-align: center">My Events</h3>
+        <ul>
+          {% if events %} {% for event in events %}
+          <li>
+            {{ event.title }}
+          </li>
+          {% endfor %} {% else %} No events yet, Go on and register! {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

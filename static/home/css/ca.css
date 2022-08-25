@@ -1,0 +1,226 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+q{
+    font-size: 12px;
+    color: rgba(148, 145, 145, 0.884);
+}
+
+
+
+.ca-image-container{
+    background-image: url("../images/img_ca_final.jpeg");
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height : 85vh;
+}
+
+
+.visible-mobile{
+    display:none;
+    margin-bottom: 40vh;
+    align-self: flex-end;
+}
+
+
+@media only screen and (max-width: 760px) {
+
+    .ca-image-container{
+        background-image: url("../images/img_ca_mobile_final.jpeg");
+        height: 80vh;
+        justify-content: space-between;
+    }
+
+	.visible-desktop{
+        display: none;	
+    }
+    .visible-mobile{
+        display: flex;
+    }
+}
+
+
+.image-overlay{
+    background-color:rgba(0, 0,0,0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20vh;
+    width: 100%;
+    animation: fadeIn 2s linear 0s 1;
+    color: rgba(255, 255, 255, 0.822);
+}
+
+
+
+.nav-tabs-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+
+.nav-link{
+    color:  #da4b7e;
+    font-size: 20px;
+    font-weight: bold;
+    transition-duration: 300ms;
+    outline: none !important;
+    border: none !important;
+}
+
+.active{
+    background-color: #101218 !important;
+    outline: none !important;
+    border: none !important;
+    color:   #da4b7e !important;
+}
+
+.nav-link:focus{
+    background-color: #101218!important;
+    outline: none !important;
+    border: none !important;
+    color:   #da4b7e !important;
+}
+
+.nav-link:hover{
+    outline: none;
+    border: none;
+    color:   #da4b7e ;
+}
+
+.tab-content div{
+
+    color: rgba(0, 0,0,0.8) !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    
+}
+
+.tab-pane{
+    box-sizing: border-box;
+    border-radius: 2px 2px 2px 2px !important;
+    box-shadow: 2px 2px 20px black !important;
+    padding: 20px !important;
+}
+
+
+.points-list li h5, .incentives-list h5, .work-list h5{
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #5a9aa8;
+}
+
+.points-list li{
+    color: #5a9aa8;
+}
+
+.points-list li p ,.incentives-list li , .work-list li{
+    color: #b3bfd6;
+    padding: 5px;
+}
+
+/*Faqs*/
+
+.faqs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.faqs-container h2{
+    font-weight: bold;
+    color: #da4b7e;
+}
+
+
+/*.faqs-que{*/
+/*    background-color: black;*/
+/*    padding: 10px;*/
+/*    border-radius: 3px;*/
+/*    box-shadow: 2px 2px 20px black;*/
+/*    color: red;*/
+/*}*/
+
+/*#faqs-ans-1{*/
+/*    height: 0px;*/
+/*    display: none;*/
+/*    transition-duration: 300ms;*/
+/*}*/
+
+
+
+.animate{
+    transition: all .3s;
+}
+
+label{
+    font-weight: bold;
+}
+
+input[name=question]{
+    display: none;
+}
+input[name=question] + label{
+    position: relative;
+    display: block;
+    padding: 20px 20px;
+    margin: 0px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background: #161821;
+    color: #5a9aa8;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    border-radius: 3px;
+}
+
+.response{
+    position: relative;
+    background: #101218;
+    color: #101218;
+    padding: 10px 20px;
+    -webkit-transform: translate3d(0,-40px, 0) rotate(-.5deg);
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    opacity: 0;
+    border-radius: 3px;
+}
+
+input[name=question]:checked + label{
+    background: #161821;
+    font-weight: bold;
+    color:   #5a9aa8;
+}
+
+input[name=question]:checked + label + .response{
+    opacity: 1;
+    visibility: visible;
+    padding: 10px 20px;
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    -webkit-filter: blur(0px);
+    margin-bottom: 10px;
+    color: #b3bfd6;
+    
+}
+
+.fixed-height{
+    height: 50px;
+    overflow: hidden;
+    opacity: 1 !important;
+}
+

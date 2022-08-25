@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% load static %} {%block title%}
+<title>Register</title>
+{%endblock%} {%block head%}
+<link rel="stylesheet" href="{% static 'accounts/css/register-form.css' %}" />
+<script src="{% static 'accounts/js/forms.js'%}"></script>
+<script src="{% static 'accounts/js/register.js'%}"></script>
+
+{%endblock%} {%block body%}
+
+<div class="page-container">
+  <div class="login-modal-container">
+    <div class="login-modal">
+      <div class="login-modal-header">
+        <h2>Register</h2>
+      </div>
+      <form class="register-form" method="post" action="{% url 'register' %}">
+        {%csrf_token%}
+
+        <div class="first-name ip-group">
+          <label for="first_name">Firstname :</label>
+          <div class="input-group">
+            <div class="controls"><i class="fa fa-user"></i></div>
+            {{form.first_name}}
+          </div>
+        </div>
+
+        <div class="last-name ip-group">
+          <label for="last_name">Lastname :</label>
+          <div class="input-group">
+            <div class="controls"><i class="fa fa-user"></i></div>
+            {{form.last_name}}
+          </div>
+        </div>
+
+        <div class="email ip-group">
+          <label for="email">Email :</label>
+          <div class="input-group">
+            <div class="controls">
+              <i class="fa fa-google"></i>
+            </div>
+            {{form.email}}
+          </div>
+        </div>
+
+        <div class="password1 ip-group">
+          <label for="first_name">Password :</label>
+          <div class="input-group">
+            <div class="controls">
+              <i class="fa fa-key"></i>
+              <i
+                class="fa fa-eye-slash pass-control"
+                onclick="toggleInputType('id_password1');"
+              ></i>
+            </div>
+            {{form.password1}}
+          </div>
+        </div>
+
+        <div class="password2 ip-group">
+          <label for="last_name">Confirm :</label>
+          <div class="input-group">
+            <div class="controls">
+              <i class="fa fa-key"></i>
+              <i
+                class="fa fa-eye-slash pass-control"
+                onclick="toggleInputType('id_password2');"
+              ></i>
+            </div>
+            {{form.password2}}
+          </div>
+        </div>
+
+        <div class="college ip-group email-ip">
+          <label for="college">College :</label>
+          <div class="input-group">
+            <div class="controls">
+              <i class="fa fa-university"></i>
+            </div>
+            {{participant_info.college}}
+          </div>
+        </div>
+
+        <div class="contact ip-group email-ip">
+          <label for="contact">Contact :</label>
+          <div class="input-group">
+            <div class="controls">
+              <i class="fa fa-phone"></i>
+            </div>
+            {{participant_info.contact}}
+          </div>
+        </div>
+
+        <div class="login-modal-footer">
+          <button type="submit" class="reg-submit-btn" id="regButton">
+            Sign up
+          </button>
+
+          <div style="color: rgba(255, 0, 0, 0.699); padding: 10px">
+            {{form.first_name.errors}} {{participant_info.college.errors}}
+            {{form.password2.errors}} {{form.password1.errors}}
+            {{form.password1.errors}} {{form.last_name.errors}}
+            {{form.email.errors}} {{participant_info.contact.errors}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {%block title%}
+<title>Reset Password</title>
+{%endblock%} {%block head%}
+
+<link rel="stylesheet" href="{% static 'accounts/css/login-form.css' %}" />
+<script src="{% static 'accounts/js/forms.js'%}"></script>
+
+{%endblock%} {%block body%}
+
+<div class="page-container">
+  <div class="login-modal-container">
+    <div class="login-modal">
+      <div class="login-modal-header">
+        <h2>Reset&nbsp;Password</h2>
+      </div>
+      <form method="post" action="{% url 'reset_password' %}">
+        {%csrf_token%}
+        <div class="login-modal-content">
+          <label for="username">Aarohi&nbsp;ID:</label>
+          <div class="input-group">
+              <input type="text" name="userID" />
+              <i class="long-icon fa fa-user"></i>
+          </div>
+          <label for="email">Email:</label>
+          <div class="input-group">
+              <input type="email" name="email" />
+              <i class="long-icon fa fa-google"></i>
+          </div>
+        </div>
+        <div class="login-modal-footer">
+          <button class="request-password-button" type="submit">
+            Request new Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

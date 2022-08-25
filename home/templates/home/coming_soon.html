@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+
+{%block title%}
+<title>Coming soon</title>
+{%endblock%}
+
+ 
+{%block head%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<link rel="stylesheet" href="{% static 'home/css/coming_soon.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+<script defer src="{% static 'home/js/comingsoon.js' %}"></script>
+{%endblock%}     
+    
+
+{%block body%}
+
+<main>
+    <div class="bg"></div>
+    <div class="content">
+        <div id="quote" class="quote">
+            <div class="quote-text" id="quote-text"></div>
+            <div class="quote-author" id="quote-author"></div>
+        </div>
+        <div class="titles">
+            <a id="home-link" href="/home">
+                <h2>A Universal Symphony</h2>
+            </a>
+            <h1>Coming Soon!</h1>
+            <h2>Stay Tuned</h2>
+        </div>
+        <div class="links">
+            <a href="https://www.facebook.com/AarohiWorld/"><i class="fa-brands fa-facebook"></i> facebook</a>
+            <a href="https://www.instagram.com/aarohi_vnitnagpur/"><i class="fa-brands fa-instagram"></i> instagram</a>
+            <a href="#"><i class="fa-brands fa-discord"></i> discord</a>
+            <a href="https://www.youtube.com/channel/UCcBmZqk4hUSbSiyQzGU20pg"><i class="fa-brands fa-youtube"></i> youtube</a>
+        </div>
+    </div>
+    <!--uncover what lies underneath to discover a symphony of your own-->
+    <div style="display: none;" class="instruments">
+        <i sound="rain" draggable="true" class="instrument fa-solid fa-cloud-rain"></i>
+        <i sound="guitar" draggable="true" class="instrument fa-solid fa-guitar"></i>
+        <i sound="wind" draggable="true" class="instrument fa-solid fa-wind"></i>
+    </div>
+</main>
+        
+<!---
+        <div class="container">
+            <div class="coming-soon">
+                <h2>Coming Soon</h2>
+                <div class="footer-social">
+                    <img class="footer-social-img" src="{% static 'footer_img.png'%} ">
+                    <div class="footer-social-icons">
+                        <a href="https://www.facebook.com/axisvnit/" class="fa fa-facebook fa-custom-icon" target="blank"></a>
+                        <a href="https://www.instagram.com/axis_vnit/?hl=en" class="fa fa-instagram fa-custom-icon" target="blank"></a>
+                        <a href="https://in.linkedin.com/company/axis-vnit-nagpur" class="fa fa-linkedin fa-custom-icon" target="blank"></a>
+                        <a href="https://twitter.com/axisvnit?lang=en" class="fa fa-twitter fa-custom-icon" target="blank"></a>
+                    </div>
+                </div> 
+                <a href="/home"><button class="btn-hover color-4">Back to Home</button></a>
+            </div>
+        </div>
+--->
+{%endblock%}
+
+

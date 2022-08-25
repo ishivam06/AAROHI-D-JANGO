@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {%block title%}
+<title>Login</title>
+{%endblock%} {%block head%}
+
+<link rel="stylesheet" href="{% static 'accounts/css/login-form.css' %}" />
+<script src="{% static 'accounts/js/forms.js'%}"></script>
+
+{%endblock%} {%block body%}
+
+<div class="page-container">
+  <div class="login-modal-container">
+    <div class="login-modal">
+      <form method="post" action="{% url 'login' %}">
+        {%csrf_token%}
+        <label for="username">Aarohi ID :</label>
+        <div class="login-modal-content">
+          <div class="input-group">
+            {{form.username}} {{form.username.errors}}
+            <div class="controls">
+              <i class="icon fa fa-user"></i>
+            </div>
+          </div>
+          <label for="Password">Password :</label>
+          <div class="input-group">
+            {{form.password}} {{form.password.errors}}
+            <div class="controls">
+              <i class="icon fa fa-key"></i>
+              <i
+                class="icon-interactive fa fa-eye-slash pass-control"
+                onclick="toggleInputType('id_password');"
+              ></i>
+            </div>
+          </div>
+          <a href="{%url 'reset_password'%}">forgot password ?</a>
+          <span> {{message}} </span>
+        </div>
+
+        <div class="login-modal-footer">
+          <button class="signin-button" type="submit">Sign&nbsp;In</button>
+          <span class="register-prompt">
+            <span>Don't have an account?</span>
+            <a href="{%url 'register'%}">Register</a>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

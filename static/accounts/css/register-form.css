@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat:wght@700&family=Roboto&display=swap');
+
+:root {
+  --color-pink: hsla(320, 89%, 51%, 1);
+  --color-purple-dark: hsla(270, 96%, 28%, 1);
+  --color-purple: hsla(264, 96%, 38%, 1);
+  --color-blue-very-dark: hsla(264, 96%, 7%, 1);
+  --color-blue-dark: hsla(253, 96%, 12%, 1);
+}
+
+.page-container {
+    background-color: hsla(0, 0%, 10%, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.login-modal-header {
+    font-family: 'Montserrat';
+    color: white;
+}
+
+.login-modal {
+    background-color: hsla(0, 0%, 10%, 1);
+    box-shadow: -2px -2px 16px hsla(0, 0%, 15%, 1), 2px 2px 12px hsla(0, 0%, 0%, 1);
+    padding: 2em;
+    border-radius: 1em;
+    width: 80vw;
+}
+
+.register-form {
+    display: grid;
+    column-gap: 5vw;
+    row-gap: 5vh;
+    grid-template-areas: 
+        "firstname lastname"
+        "email email"
+        "password1 password2"
+        "college contact";
+    color: white;
+    font-family: 'Roboto';
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.first-name {
+    grid-area: firstname;
+}
+
+.last-name {
+    grid-area: lastname;
+}
+
+.email {
+    grid-area: email
+}
+
+.password1 {
+    grid-area: password1;
+}
+
+.password2 {
+    grid-area: password2;
+}
+
+.college {
+    grid-area: college;
+} 
+
+.contact {
+    grid-area: contact;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pass-control {
+    background-color: hsla(0, 0%, 0%, 0);
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 0 0.5ch;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.pass-control:hover {
+    background-color: var(--color-pink);
+}
+
+.input-group i:not(.pass-control) {
+    padding: 1em;
+    border-radius: 0.5em;
+    background-color: var(--color-pink);
+    margin: 0 0.5ch;
+}
+
+.controls {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    pointer-events: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: none;
+    padding: 1em;
+    border-radius: 0.5em;
+    outline: none;
+    background-color: hsla(0, 0%, 15%, 1);
+    color: white;
+    width: 100%;
+}
+
+@media (max-width: 720px) {
+    .register-form {
+        grid-template-areas: 
+            "firstname" 
+            "lastname"
+            "email"
+            "password1"
+            "password2"
+            "college"
+            "contact";
+        max-height: 60vh;
+    }
+}

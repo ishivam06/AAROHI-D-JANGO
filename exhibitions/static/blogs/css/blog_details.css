@@ -1,0 +1,163 @@
+
+
+
+.blog-image img{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top;
+    z-index: -1;
+    position: fixed;
+}
+
+.blog-header{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-header h1{
+    text-align: center;
+}
+
+.blog-details-writer{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-details-writer img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.blog-content{
+    width: 90%;
+    padding: 20px;
+    opacity: 1;
+    white-space: pre-line;
+    background-color:  #161821;
+    box-shadow: 5px 5px 30px black;
+    border-radius: 7px 7px 7px 7px;
+    margin-bottom: 60px;
+    transition-duration: 300ms;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.blog-content:hover{
+    box-shadow: 5px 5px 60px black;
+    transform: scale(1.006);
+}
+
+.blog-content pre{
+    text-align: left;
+    color: #b3bfd6 ;
+    font-size: 16px;
+    line-height: 1.66;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    opacity: 1;
+}
+
+.blog-content h3{
+    padding: 10px;
+    padding-left: 0px;
+    color:#5a9aa8 ;
+}
+
+@media only screen and (max-width: 760px){
+    
+    .blog-content{
+        width:90%;
+        text-align: justify;
+    }
+
+    .blog-content pre{
+        text-align: justify;
+    }
+}
+
+.blog-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.blog-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.blog-footer div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.blog-footer div span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.blog-detail-date{
+    display: block;
+    padding-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+.fa-custom-blog{
+    background-color: #161821;
+    color: red;
+    font-size: 24px;
+    outline: none;
+    border: none;
+}
+
+.fa-custom-blog:focus{
+    outline: none;
+}
+
+
+#shareButton{
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 760px){
+
+    #shareButton{
+        visibility:visible;
+    }
+}
+
+.fa-social-custom{
+    background-color:transparent;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    padding: 10px;
+    color: #b3bfd6;
+    border-radius: 50%;
+}
+
+
+
+.fa-social-custom:hover{
+    text-decoration: none;
+    background-color: transparent;
+    color: white;
+}

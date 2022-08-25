@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+<title>Previous Sponsors</title>
+{%endblock%}
+
+
+{%block head%}
+<link rel="stylesheet" href="{% static 'home/css/previous_spons.css' %}" />
+<link rel="stylesheet" href="{% static 'home/css/team.css' %}" />
+<script defer src="{% static 'home/js/sponsor.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+  integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+    .music-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  .music-overlay .music-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: all;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0, 0%, 5%, 0.99);
+  }
+
+  .music-message h1 {
+    font-family: 'Montserrat';
+    font-size: 3em;
+    background: linear-gradient(135deg, violet, purple, orange, red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: unset;
+    text-align: center;
+  }
+
+  .music-message p {
+    color: white;
+  }
+
+  .music-overlay .music-button {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    padding: 1em;
+    background-color: white;
+    color: black;
+    pointer-events: all;
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+    let bgmPath = "{% static 'sponsTheme.mp3' %}";
+</script>
+
+{%endblock%}
+
+
+{%block body%}
+<div class="bg"></div>
+<div class="main">
+    <div class="content">
+
+
+        <h1>Our Sponsors</h1>
+
+
+        <div class="current-sponsors">
+            <div class="title-sponsors">
+                <div class="section-heading">
+                    <h2>Title&nbsp;Sponsors</h2>
+                </div>
+                <div class="card-list">
+                    
+        <div class="card-list">
+            <!--FOR logo OF previous_sponsor -->
+         
+            <!--ENDFOR-->
+        </div>
+
+
+                </div>   
+            </div>
+            <div class="major-sponsors">
+                <div class="section-heading">
+                    <h2>Major Sponsors</h2>
+                </div>
+                <div class="card-list">
+                    <div class="sponsor-card sponsor-card-major">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/sponsors/chatur-ideas.png' %}" alt="" srcset="">
+                        </div>
+                    </div>
+        
+                    <div class="sponsor-card sponsor-card-major">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/sponsors/empower.png' %}" alt="" srcset="">
+                        </div>
+                    </div>
+        
+                   
+        
+                    <div class="sponsor-card sponsor-card-major">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/sponsors/ies-master.jpeg' %}" alt="" srcset="">
+                        </div>
+                    </div>
+        
+                    <div class="sponsor-card sponsor-card-major">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/sponsors/made-easy.png' %}" alt="" srcset="">
+                        </div>
+                    </div>
+        
+                   
+    
+        
+                    <div class="sponsor-card sponsor-card-major">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/sponsors/wcl.png' %}" alt="" srcset="">
+                        </div>
+                    </div>
+                
+                <div style="background-color: transparent;" class="sponsor-card sponsor-card-major">
+                    <div class="sponsor-logo-container">
+                        <img src="{% static 'home/images/sponsors/mahila.png' %}" alt="" srcset="">
+                    </div>
+                </div>
+
+                
+                <div style="background-color: transparent;" class="sponsor-card sponsor-card-major">
+                    <div class="sponsor-logo-container">
+                        <img src="{% static 'home/images/sponsors/nest-amd-sppon.png' %}" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <div class="other-sponsors">
+                <div class="section-heading">
+                    <h2>Other Sponsors</h2>
+                </div>
+            </div>
+            <div class="previous-sponsors">
+                <div class="section-heading">
+                    <h2>Previous Sponsors</h2>
+                </div>
+                <div class="card-list">
+                    <!--FOR logo OF previous_sponsor -->
+                    <div class="sponsor-card sponsor-card-previous">
+                        <div class="sponsor-logo-container">
+                            <img src="{% static 'home/images/previous_sponsors/moil.jpg' %}" alt="" srcset="">
+                        </div>
+                    </div>
+                    <!--ENDFOR-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="music-overlay" id="music-overlay">
+        <div class="music-message" id="music-message">
+          <h1>Meet our Sponsors</h1>
+          <p>( Click Here )</p>
+        </div>
+        <i class="music-button fa-solid fa-music" id="music-button"></i>
+      </div>
+</div>
+
+{%endblock%}
